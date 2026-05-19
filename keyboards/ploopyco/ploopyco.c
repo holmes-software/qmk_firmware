@@ -145,11 +145,12 @@ report_mouse_t pointing_device_task_kb(report_mouse_t mouse_report) {
         scroll_accumulated_v += (float)mouse_report.y / PLOOPY_DRAGSCROLL_DIVISOR_V;
 
         // Assign integer parts of accumulated scroll values to the mouse report
-        mouse_report.h = (int8_t)scroll_accumulated_h;
 #ifdef PLOOPY_DRAGSCROLL_INVERT
         mouse_report.v = -(int8_t)scroll_accumulated_v;
+        mouse_report.h = (int8_t)scroll_accumulated_h;
 #else
         mouse_report.v = (int8_t)scroll_accumulated_v;
+        mouse_report.h = -(int8_t)scroll_accumulated_h;
 #endif
 
         // Update accumulated scroll values by subtracting the integer parts
